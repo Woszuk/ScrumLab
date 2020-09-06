@@ -20,7 +20,7 @@ public class AppEditScheduleServlet extends HttpServlet {
         String description = request.getParameter("description");
         if(name.equals("") || description.equals("")){
             Cookie cookie = new Cookie("errorEditPlan", "YES");
-            cookie.setMaxAge(5);
+            cookie.setMaxAge(2);
             response.addCookie(cookie);
             response.sendRedirect("/app/editSchedule?id="+id);
         }else {
