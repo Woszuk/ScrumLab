@@ -6,12 +6,13 @@ import pl.coderslab.model.Recipe;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class RecipeData {
-    public static void splitIngredients(HttpServletRequest request) {
+    public static void splitIngredients(HttpServletRequest request, HttpServletResponse response) {
         int recipeId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         boolean cookieExist = false;
@@ -19,6 +20,8 @@ public class RecipeData {
         for(Cookie cookie: cookies){
             if("recipeDetails".equals(cookie.getName())){
                 cookieExist = true;
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
             }
         }
 

@@ -25,7 +25,9 @@ public class LoginServlet extends HttpServlet {
             Admins user = ad.read(email, password);
             if (user.getEnable() == 1) {
                 HttpSession sess = request.getSession();
-                sess.setAttribute("logged", user);
+                if(sess.getAttribute("logged") == null) {
+                    sess.setAttribute("logged", user);
+                }
                 response.sendRedirect("/app/dashboard");
             } else if (user.getEnable() == 0) {
                 request.setAttribute("disable", "disable");

@@ -15,6 +15,6 @@ public class AppLogoutServlet extends HttpServlet {
         if(session.getAttribute("logged") != null){
             session.invalidate();
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        response.sendRedirect("/");
     }
 }

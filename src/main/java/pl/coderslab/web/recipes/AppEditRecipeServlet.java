@@ -44,7 +44,7 @@ public class AppEditRecipeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            RecipeData.splitIngredients(request);
+            RecipeData.splitIngredients(request, response);
             getServletContext().getRequestDispatcher("/WEB-INF/recipes/app-edit-recipe.jsp").forward(request, response);
         }catch (NotFoundException e){
             response.sendRedirect("/app/dashboard");

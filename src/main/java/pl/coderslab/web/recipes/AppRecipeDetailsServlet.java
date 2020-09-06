@@ -18,7 +18,7 @@ import java.io.IOException;
 public class AppRecipeDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            RecipeData.splitIngredients(request);
+            RecipeData.splitIngredients(request, response);
             getServletContext().getRequestDispatcher("/WEB-INF/recipes/app-recipe-details.jsp").forward(request, response);
         }catch (NotFoundException e){
             response.sendRedirect("/app/dashboard");
