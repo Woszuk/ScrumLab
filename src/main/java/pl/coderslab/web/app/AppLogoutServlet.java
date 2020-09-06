@@ -1,7 +1,4 @@
-package pl.coderslab.web;
-
-import pl.coderslab.dao.BookDao;
-import pl.coderslab.model.Book;
+package pl.coderslab.web.app;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
-/**
- * Do not change servlet address !!!
- */
-@WebServlet("")
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "AppDeleteServlet", urlPatterns = {"/app/logout"})
+public class AppLogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("logged") != null){
+            session.invalidate();
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 }
