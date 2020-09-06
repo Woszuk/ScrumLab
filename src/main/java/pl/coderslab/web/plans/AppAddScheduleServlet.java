@@ -20,7 +20,7 @@ public class AppAddScheduleServlet extends HttpServlet {
 
         if(name.equals("") || description.equals("")){
             Cookie cookie = new Cookie("errorAddPlan", "YES");
-            cookie.setMaxAge(2);
+            cookie.setMaxAge(5);
             response.addCookie(cookie);
             response.sendRedirect("/app/addSchedule");
         }else{
