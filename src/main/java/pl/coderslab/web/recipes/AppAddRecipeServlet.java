@@ -31,7 +31,7 @@ public class AppAddRecipeServlet extends HttpServlet {
 
         if(name.equals("") || description.equals("") || preparationTime==0 || preparation.equals("") || ingredients.equals("")){
             Cookie cookie = new Cookie("errorAddRecipe", "YES");
-            cookie.setMaxAge(5);
+            cookie.setMaxAge(2);
             response.addCookie(cookie);
             response.sendRedirect("/app/addRecipe");
         }else{
