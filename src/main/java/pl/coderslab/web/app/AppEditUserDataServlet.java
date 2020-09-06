@@ -17,7 +17,7 @@ public class AppEditUserDataServlet extends HttpServlet {
 
         if(firstName.equals("") || lastName.equals("") || email.equals("")) {
             Cookie cookie = new Cookie("errorEditUserData", "YES");
-            cookie.setMaxAge(5);
+            cookie.setMaxAge(2);
             response.addCookie(cookie);
             response.sendRedirect("/app/editData");
         }else{
