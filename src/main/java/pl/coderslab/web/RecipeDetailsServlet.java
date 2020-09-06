@@ -14,7 +14,7 @@ import java.io.IOException;
 public class RecipeDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie cookie = new Cookie("recipeDetails", "YES");
-        cookie.setMaxAge(3);
+        cookie.setMaxAge(10);
         response.addCookie(cookie);
         RecipeData.splitIngredients(request);
         getServletContext().getRequestDispatcher("/WEB-INF/recipe-details.jsp").forward(request, response);
