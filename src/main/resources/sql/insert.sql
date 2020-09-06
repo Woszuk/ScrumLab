@@ -16,9 +16,6 @@ INSERT INTO `meal_name` (`id`, `name`, `display_order`) VALUES
 (6, 'Podwieczorek', 6),
 (7, 'Kolacja', 7);
 
-INSERT INTO `admins` (`id`, `first_name`, `last_name`, `email`, `password`, `superadmin`) VALUES
-(1, 'Arek', 'Józwiak', 'arkadiusz.jozwiak@coderslab.pl', '$2a$10$eCrsyeEmdBFktXP1Npubt.KZi9cotr3Bs8cmdVDnj9/OmKvPKzRvi', 1);
-
 INSERT INTO `plan` (`id`, `name`, `description`, `created`, `admin_id`) VALUES
 (null, 'Plan Jarski', 'Opis planu 1', '2018-10-17 14:27:05', 1),
 (null, 'Plan Mięsny', 'Opis planu 2', '2018-10-17 14:27:05', 1),
