@@ -66,6 +66,8 @@ public class AdminsDao {
                     }else {
                         throw new NotFoundException("Incorrect Data");
                     }
+                }else {
+                    throw new NotFoundException("Incorrect Data");
                 }
             }
         } catch (SQLException e) {
