@@ -37,7 +37,7 @@ public class AppSchedulesMealRecipeServlet extends HttpServlet {
             response.sendRedirect("/app/dashboard");
         }catch (NotFoundException e){
             Cookie cookie = new Cookie("errorRecipePlanAdd", "YES");
-            cookie.setMaxAge(5);
+            cookie.setMaxAge(2);
             response.addCookie(cookie);
             response.sendRedirect("/app/recipePlanAdd");
         }
