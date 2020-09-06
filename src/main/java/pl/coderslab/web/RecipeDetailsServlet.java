@@ -13,10 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "RecipeDetailServlet", urlPatterns = {"/recipeDetails"})
 public class RecipeDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie cookie = new Cookie("recipeDetails", "YES");
-        cookie.setMaxAge(10);
-        response.addCookie(cookie);
-        RecipeData.splitIngredients(request);
+        RecipeData.splitIngredients(request, response);
         getServletContext().getRequestDispatcher("/WEB-INF/recipe-details.jsp").forward(request, response);
     }
 }
