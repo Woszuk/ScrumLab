@@ -24,7 +24,7 @@ public class AppDeleteScheduleServlet extends HttpServlet {
             pd.deleteSchedule(id, user.getId());
         }catch (ForeignKeyException e){
             Cookie cookie = new Cookie("errorDeletePlan", idStr);
-            cookie.setMaxAge(5);
+            cookie.setMaxAge(2);
             response.addCookie(cookie);
         }
         response.sendRedirect("/app/schedules");
