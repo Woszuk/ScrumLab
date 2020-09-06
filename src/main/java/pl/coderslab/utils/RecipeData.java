@@ -4,6 +4,7 @@ import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.model.Admins;
 import pl.coderslab.model.Recipe;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -13,10 +14,23 @@ public class RecipeData {
     public static void splitIngredients(HttpServletRequest request) {
         int recipeId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
+        boolean cookieExist = false;
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie: cookies){
+            if("recipeDetails".equals(cookie.getName())){
+                cookieExist = true;
+            }
+        }
+
         if(session.getAttribute("logged") !=null){
             Admins user = (Admins)session.getAttribute("logged");
             RecipeDao rd = new RecipeDao();
-            Recipe recipe = rd.detailsRecipe(recipeId, user.getId());
+            Recipe recipe;
+            if(cookieExist){
+                recipe = rd.detailsRecipeHomePage(recipeId);
+            }else{
+                recipe = rd.detailsRecipe(recipeId, user.getId());
+            }
             checkIngredients(request, recipe);
         }else {
             RecipeDao rd = new RecipeDao();
