@@ -21,31 +21,30 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         AdminsDao ad = new AdminsDao();
-        try{
+        try {
             Admins user = ad.read(email, password);
-            if(user.getEnable() == 1) {
+            if (user.getEnable() == 1) {
                 HttpSession sess = request.getSession();
                 sess.setAttribute("logged", user);
                 response.sendRedirect("/app/dashboard");
-            }else if(user.getEnable() == 0){
+            } else if (user.getEnable() == 0) {
                 request.setAttribute("disable", "disable");
                 getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-
-            }else{
+            } else {
                 throw new NotFoundException("error");
             }
-        }catch (NotFoundException e){
-            request.setAttribute("error", "yes");
+        } catch (NotFoundException e) {
+            request.setAttribute("error", "YES");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-
         }
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("logged") != null){
+        if (session.getAttribute("logged") != null) {
             response.sendRedirect("/app/dashboard");
-        }else{
+        } else {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
