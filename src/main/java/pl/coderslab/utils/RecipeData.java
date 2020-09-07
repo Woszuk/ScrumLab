@@ -15,31 +15,13 @@ public class RecipeData {
     public static void splitIngredients(HttpServletRequest request, HttpServletResponse response) {
         int recipeId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        boolean cookieExist = false;
-        Cookie[] cookies = request.getCookies();
-        for(Cookie cookie: cookies){
-            if("recipeDetails".equals(cookie.getName())){
-                cookieExist = true;
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
+        Admins user = new Admins();
+        if(session.getAttribute("logged") !=null) {
+            user = (Admins) session.getAttribute("logged");
         }
-
-        if(session.getAttribute("logged") !=null){
-            Admins user = (Admins)session.getAttribute("logged");
             RecipeDao rd = new RecipeDao();
-            Recipe recipe;
-            if(cookieExist){
-                recipe = rd.detailsRecipeHomePage(recipeId);
-            }else{
-                recipe = rd.detailsRecipe(recipeId, user.getId());
-            }
+            Recipe recipe = rd.detailsRecipe(recipeId, user.getId());
             checkIngredients(request, recipe);
-        }else {
-            RecipeDao rd = new RecipeDao();
-            Recipe recipe = rd.detailsRecipeHomePage(recipeId);
-            checkIngredients(request, recipe);
-        }
     }
 
     public static void checkIngredients(HttpServletRequest request, Recipe recipe){
@@ -57,5 +39,12 @@ public class RecipeData {
 
         request.setAttribute("recipe", recipe);
         request.setAttribute("ingredients", recipeIngredients);
+    }
+
+    public static void splitIngredientsRecipe(HttpServletRequest request){
+        int recipeId = Integer.parseInt(request.getParameter("id"));
+        RecipeDao rd = new RecipeDao();
+        Recipe recipe = rd.detailsRecipeHomePage(recipeId);
+        checkIngredients(request, recipe);
     }
 }

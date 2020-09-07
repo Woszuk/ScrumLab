@@ -24,7 +24,14 @@
         </a>
         <ul class="nav nounderline text-uppercase">
             <li class="nav-item ml-4">
-                <a class="nav-link color-header" href="<c:url value="login" />">logowanie</a>
+                <c:choose>
+                    <c:when test="${empty logged}">
+                        <a class="nav-link color-header" href="<c:url value="login" />">logowanie</a>
+                    </c:when>
+                    <c:when test="${!empty logged}" >
+                        <a class="nav-link color-header" href="<c:url value="login" />">Moje konto</a>
+                    </c:when>
+                </c:choose>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link color-header" href="<c:url value="register" />">rejestracja</a>
