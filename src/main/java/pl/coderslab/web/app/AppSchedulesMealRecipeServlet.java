@@ -17,16 +17,17 @@ public class AppSchedulesMealRecipeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        Integer planId = Integer.parseInt(request.getParameter("planId"));
-        Integer recipeId = Integer.parseInt(request.getParameter("recipeId"));
-        Integer dayNameId = Integer.parseInt(request.getParameter("dayId"));
-        Integer mealNameId = Integer.parseInt(request.getParameter("mealNameId"));
+
         RecipePlanDao rpd = new RecipePlanDao();
 
         try {
+            Integer planId = Integer.parseInt(request.getParameter("planId"));
+            Integer recipeId = Integer.parseInt(request.getParameter("recipeId"));
+            Integer dayNameId = Integer.parseInt(request.getParameter("dayId"));
+            Integer mealNameId = Integer.parseInt(request.getParameter("mealNameId"));
             rpd.create(new RecipePlan(recipeId, mealNameId, dayNameId, planId));
             response.sendRedirect("/app/dashboard");
-        }catch (NotFoundException e){
+        }catch (NotFoundException | NumberFormatException e){
             Cookie cookie = new Cookie("errorRecipePlanAdd", "YES");
             cookie.setMaxAge(2);
             response.addCookie(cookie);
