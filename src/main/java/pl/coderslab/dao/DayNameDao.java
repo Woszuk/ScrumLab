@@ -32,21 +32,4 @@ public class DayNameDao {
         }
         return dayNames;
     }
-
-    public Integer dayNameId(String dayName){
-        Integer dayNameId = 0;
-        try(Connection connection = DbUtil.getConnection();
-            PreparedStatement pr = connection.prepareStatement(ID_DAY_NAME_QUERY)
-        ){
-            pr.setString(1, dayName);
-            try(ResultSet rs = pr.executeQuery()){
-                if (rs.next()){
-                    dayNameId = rs.getInt("id");
-                }
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return dayNameId;
-    }
 }

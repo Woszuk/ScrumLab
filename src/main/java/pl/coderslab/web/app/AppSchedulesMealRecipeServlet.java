@@ -17,22 +17,13 @@ public class AppSchedulesMealRecipeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        String plan = request.getParameter("plan");
-        String recipe = request.getParameter("recipe");
-        String dayName = request.getParameter("day");
-        String nameMeal = request.getParameter("mealName");
-
-        PlanDao pd = new PlanDao();
-        RecipeDao rd = new RecipeDao();
-        DayNameDao dno = new DayNameDao();
-        MealNameDao mnd = new MealNameDao();
+        Integer planId = Integer.parseInt(request.getParameter("planId"));
+        Integer recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        Integer dayNameId = Integer.parseInt(request.getParameter("dayId"));
+        Integer mealNameId = Integer.parseInt(request.getParameter("mealNameId"));
         RecipePlanDao rpd = new RecipePlanDao();
 
         try {
-            Integer planId = pd.planId(plan);
-            Integer recipeId = rd.recipeId(recipe);
-            Integer dayNameId = dno.dayNameId(dayName);
-            Integer mealNameId = mnd.mealNameId(nameMeal);
             rpd.create(new RecipePlan(recipeId, mealNameId, dayNameId, planId));
             response.sendRedirect("/app/dashboard");
         }catch (NotFoundException e){
@@ -41,7 +32,6 @@ public class AppSchedulesMealRecipeServlet extends HttpServlet {
             response.addCookie(cookie);
             response.sendRedirect("/app/recipePlanAdd");
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

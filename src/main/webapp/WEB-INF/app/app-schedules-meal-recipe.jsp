@@ -23,9 +23,9 @@
                                 Wybierz plan
                             </label>
                             <div class="col-sm-3">
-                                <select class="form-control" id="choosePlan" name="plan">
+                                <select class="form-control" id="choosePlan" name="planId">
                                     <c:forEach items="${plans}" var="plan" >
-                                        <option>${plan.name}</option>
+                                        <option value="${plan.id}">${plan.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -35,9 +35,9 @@
                                 Nazwa posiłku
                             </label>
                             <div class="col-sm-2">
-                                <select class="form-control" id="meal" name="mealName">
+                                <select class="form-control" id="meal" name="mealNameId">
                                     <c:forEach var="mealName" items="${mealNames}">
-                                        <option>${mealName.name}</option>
+                                        <option value="${mealName.id}">${mealName.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -47,9 +47,9 @@
                                 Przepis
                             </label>
                             <div class="col-sm-4">
-                                <select class="form-control" id="recipie" name="recipe">
+                                <select class="form-control" id="recipie" name="recipeId">
                                     <c:forEach var="recipe" items="${recipes}">
-                                        <option>${recipe.name}</option>
+                                        <option value="${recipe.id}">${recipe.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -59,9 +59,9 @@
                                 Dzień
                             </label>
                             <div class="col-sm-2">
-                                <select class="form-control" id="day" name="day">
+                                <select class="form-control" id="day" name="dayId">
                                     <c:forEach items="${dayNames}" var="dayName">
-                                        <option>${dayName.name}</option>
+                                        <option value="${dayName.id}">${dayName.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

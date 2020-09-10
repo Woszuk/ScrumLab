@@ -13,7 +13,6 @@ import java.util.List;
 
 public class MealNameDao {
     private static final String ALL_MEAL_NAME_QUERY = "SELECT * FROM meal_name";
-    private static final String ID_MEAL_NAME_QUERY = "SELECT id FROM meal_name WHERE name = ?";
 
     public List<MealName> allMealName (){
         List<MealName> mealNames = new ArrayList<>();
@@ -32,22 +31,5 @@ public class MealNameDao {
             e.printStackTrace();
         }
         return mealNames;
-    }
-
-    public Integer mealNameId(String mealName){
-        Integer mealNameId = 0;
-        try(Connection connection = DbUtil.getConnection();
-            PreparedStatement pr = connection.prepareStatement(ID_MEAL_NAME_QUERY)
-        ){
-            pr.setString(1, mealName);
-            try(ResultSet rs = pr.executeQuery()){
-                if (rs.next()){
-                    mealNameId = rs.getInt("id");
-                }
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return mealNameId;
     }
 }

@@ -178,23 +178,6 @@ public class RecipeDao {
         }
     }
 
-    public Integer recipeId(String recipe){
-        Integer recipeId = 0;
-        try(Connection connection = DbUtil.getConnection();
-            PreparedStatement pr = connection.prepareStatement(ID_RECIPE_QUERY)
-        ){
-            pr.setString(1, recipe);
-            try(ResultSet rs = pr.executeQuery()){
-                if (rs.next()){
-                    recipeId = rs.getInt("id");
-                }
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return recipeId;
-    }
-
     private void recipeData(Recipe recipe, ResultSet rs) throws SQLException {
         recipe.setId(rs.getInt("id"));
         recipe.setName(rs.getString("name"));

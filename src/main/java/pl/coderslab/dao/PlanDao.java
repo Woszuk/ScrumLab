@@ -19,7 +19,6 @@ public class PlanDao {
     private static final String PLAN_QUERY = "SELECT * FROM plan WHERE id = ? AND admin_id = ?";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan WHERE id = ? AND admin_id = ?";
     private static final String UPDATE_PLAN_QUERY = "UPDATE plan SET name = ?, description = ? WHERE id = ?";
-    private static final String ID_PLAN_QUERY = "SELECT id FROM plan WHERE name = ?";
     private static final String LAST_PLAN_QUERY = "SELECT name FROM plan WHERE admin_id = ? ORDER BY id DESC LIMIT 1";
 
     public List<Plan> allPlan(Integer adminId){
@@ -136,22 +135,6 @@ public class PlanDao {
         return sum;
     }
 
-    public Integer planId(String plan){
-        Integer planId = 0;
-        try(Connection connection = DbUtil.getConnection();
-            PreparedStatement pr = connection.prepareStatement(ID_PLAN_QUERY)
-        ){
-            pr.setString(1, plan);
-            try(ResultSet rs = pr.executeQuery()){
-                if (rs.next()){
-                    planId = rs.getInt("id");
-                }
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return planId;
-    }
 
     public String lastPlan(Integer adminId){
         String name = "";
