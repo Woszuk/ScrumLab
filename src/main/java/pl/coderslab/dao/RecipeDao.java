@@ -14,11 +14,10 @@ public class RecipeDao {
     private static final String ALL_RECIPE_QUERY = "SELECT * FROM recipe";
     private static final String READ_RECIPE_QUERY = "SELECT * FROM recipe WHERE id = ? AND admin_id =?";
     private static final String READ_RECIPE_HOME_PAGE_QUERY = "SELECT * FROM recipe WHERE id = ?";
-    private static final String ALL_RECIPE_USER_QUERY = "SELECT * FROM recipe WHERE admin_id = ?";
+    private static final String ALL_RECIPE_USER_QUERY = "SELECT * FROM recipe WHERE admin_id = ? ORDER BY id DESC";
     private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name, description, preparation_time, preparation, ingredients, created,  admin_id) VALUE (?, ?, ?, ?, ?, ?, ?)";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe WHERE id = ? AND admin_id = ?";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE recipe SET name = ?, description = ?, preparation_time = ?, preparation =?, ingredients = ?, updated = ? WHERE id = ?";
-    private static final String ID_RECIPE_QUERY = "SELECT id FROM recipe WHERE name = ?";
 
     public List<Recipe> allRecipe(){
         List <Recipe> recipes = new ArrayList<>();

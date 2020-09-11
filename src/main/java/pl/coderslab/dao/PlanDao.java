@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlanDao {
-    private static final String ALL_PLANS_QUERY = "SELECT * FROM plan WHERE admin_id = ?";
+    private static final String ALL_PLANS_QUERY = "SELECT * FROM plan WHERE admin_id = ? ORDER BY id DESC";
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name, description, created, admin_id) VALUES (?, ?, ?, ?)";
     private static final String PLAN_QUERY = "SELECT * FROM plan WHERE id = ? AND admin_id = ?";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan WHERE id = ? AND admin_id = ?";

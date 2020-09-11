@@ -12,7 +12,6 @@ import java.util.List;
 
 public class DayNameDao {
     private static final String ALL_DAYS_NAME_QUERY = "SELECT * FROM day_name";
-    private static final String ID_DAY_NAME_QUERY = "SELECT id FROM day_name WHERE name = ?";
 
     public List<DayName> allDaysName (){
         List<DayName> dayNames = new ArrayList<>();
