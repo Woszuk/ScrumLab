@@ -2,8 +2,7 @@ package pl.coderslab.web.recipes;
 
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.exception.ForeignKeyException;
-import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +13,9 @@ import java.io.IOException;
 public class AppDeleteRecipeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") != null){
-            user = (Admins)session.getAttribute("logged");
+            user = (Admin)session.getAttribute("logged");
         }
         String idStr = request.getParameter("id");
         try {

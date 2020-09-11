@@ -1,23 +1,20 @@
 package pl.coderslab.utils;
 
 import pl.coderslab.dao.RecipeDao;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Recipe;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class RecipeData {
     public static void splitIngredients(HttpServletRequest request, HttpServletResponse response) {
         int recipeId = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") !=null) {
-            user = (Admins) session.getAttribute("logged");
+            user = (Admin) session.getAttribute("logged");
         }
             RecipeDao rd = new RecipeDao();
             Recipe recipe = rd.detailsRecipe(recipeId, user.getId());

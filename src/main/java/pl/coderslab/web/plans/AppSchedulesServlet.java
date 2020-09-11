@@ -1,7 +1,7 @@
 package pl.coderslab.web.plans;
 
 import pl.coderslab.dao.PlanDao;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
@@ -17,9 +17,9 @@ import java.util.List;
 public class AppSchedulesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") != null){
-            user = (Admins)session.getAttribute("logged");
+            user = (Admin)session.getAttribute("logged");
         }
         PlanDao pd = new PlanDao();
         List<Plan> plans = pd.allPlan(user.getId());

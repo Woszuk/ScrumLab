@@ -4,7 +4,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.exception.DuplicateException;
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -23,7 +23,7 @@ public class AdminsDao {
     private static final String CHANGE_PASSWORD_QUERY = "UPDATE admins SET password = ? WHERE id = ?";
     private static final String CHANGE_DATA_QUERY = "UPDATE admins SET first_name = ?, last_name = ?, email = ? WHERE id = ?";
 
-    public Admins create(Admins admin) {
+    public Admin create(Admin admin) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement pr = connection.prepareStatement(CREATE_USER_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -54,8 +54,8 @@ public class AdminsDao {
         return admin;
     }
 
-    public Admins read(String email, String password) {
-        Admins admin = new Admins();
+    public Admin read(String email, String password) {
+        Admin admin = new Admin();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement pr = connection.prepareStatement(READ_USER_QUERY)) {
             pr.setString(1, email);
@@ -76,13 +76,13 @@ public class AdminsDao {
         return admin;
     }
 
-    public List<Admins> readAll() {
-        List<Admins> adminsList = new ArrayList<>();
+    public List<Admin> readAll() {
+        List<Admin> adminsList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement pr = connection.prepareStatement(READ_ALL_USERS_QUERY)) {
             try (ResultSet rs = pr.executeQuery()) {
                 while (rs.next()) {
-                    Admins admin = new Admins();
+                    Admin admin = new Admin();
                     adminData(rs, admin);
                     adminsList.add(admin);
                 }
@@ -141,7 +141,7 @@ public class AdminsDao {
         }
     }
 
-    private void adminData(ResultSet rs, Admins admin) throws SQLException {
+    private void adminData(ResultSet rs, Admin admin) throws SQLException {
         admin.setId(rs.getInt("id"));
         admin.setFirstName(rs.getString("first_name"));
         admin.setLastName(rs.getString("last_name"));

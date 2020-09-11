@@ -1,7 +1,7 @@
 package pl.coderslab.web.app;
 
 import pl.coderslab.dao.AdminsDao;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +22,9 @@ public class AppEditPasswordServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/app/app-edit-password.jsp").forward(request, response);
         }else{
             HttpSession session = request.getSession();
-            Admins user = new Admins();
+            Admin user = new Admin();
             if(session.getAttribute("logged") != null){
-                user = (Admins)session.getAttribute("logged");
+                user = (Admin)session.getAttribute("logged");
             }
 
             AdminsDao ad = new AdminsDao();

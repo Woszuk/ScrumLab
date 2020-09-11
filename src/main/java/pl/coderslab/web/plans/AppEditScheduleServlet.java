@@ -2,7 +2,7 @@ package pl.coderslab.web.plans;
 
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
@@ -32,9 +32,9 @@ public class AppEditScheduleServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") != null){
-            user = (Admins)session.getAttribute("logged");
+            user = (Admin)session.getAttribute("logged");
         }
         try{
             Integer id = Integer.parseInt(request.getParameter("id"));

@@ -1,15 +1,13 @@
 package pl.coderslab.web;
 
-import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.dao.AdminsDao;
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -22,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 
         AdminsDao ad = new AdminsDao();
         try {
-            Admins user = ad.read(email, password);
+            Admin user = ad.read(email, password);
             if (user.getEnable() == 1) {
                 HttpSession sess = request.getSession();
                 if(sess.getAttribute("logged") == null) {

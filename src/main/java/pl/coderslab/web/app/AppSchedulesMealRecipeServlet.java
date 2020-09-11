@@ -1,6 +1,5 @@
 package pl.coderslab.web.app;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import pl.coderslab.dao.*;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.*;
@@ -37,9 +36,9 @@ public class AppSchedulesMealRecipeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") != null){
-            user = (Admins)session.getAttribute("logged");
+            user = (Admin)session.getAttribute("logged");
         }
 
         RecipeDao rd = new RecipeDao();

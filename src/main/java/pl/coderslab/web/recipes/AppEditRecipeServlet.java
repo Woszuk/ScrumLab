@@ -2,8 +2,6 @@ package pl.coderslab.web.recipes;
 
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Admins;
-import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.RecipeData;
 
 import javax.servlet.ServletException;

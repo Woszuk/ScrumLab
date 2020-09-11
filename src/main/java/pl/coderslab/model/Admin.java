@@ -1,6 +1,6 @@
 package pl.coderslab.model;
 
-public class Admins {
+public class Admin {
     private int id;
     private String firstName;
     private String lastName;
@@ -9,14 +9,14 @@ public class Admins {
     private int enable = 1;
     private int superadmin = 0;
 
-    public Admins(String firstName, String lastName, String email, String password) {
+    public Admin(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    public Admins(){
+    public Admin(){
 
     }
 

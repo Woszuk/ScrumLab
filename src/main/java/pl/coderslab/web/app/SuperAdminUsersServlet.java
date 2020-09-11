@@ -1,7 +1,7 @@
 package pl.coderslab.web.app;
 
 import pl.coderslab.dao.AdminsDao;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +15,9 @@ import java.io.IOException;
 public class SuperAdminUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admins user = new Admins();
+        Admin user = new Admin();
         if(session.getAttribute("logged") != null){
-            user = (Admins)session.getAttribute("logged");
+            user = (Admin)session.getAttribute("logged");
         }
 
         if(user.getSuperadmin()== 1){

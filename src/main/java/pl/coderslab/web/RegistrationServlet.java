@@ -1,9 +1,8 @@
 package pl.coderslab.web;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import pl.coderslab.dao.AdminsDao;
 import pl.coderslab.exception.DuplicateException;
-import pl.coderslab.model.Admins;
+import pl.coderslab.model.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/register"})
 public class RegistrationServlet extends HttpServlet {
@@ -32,7 +29,7 @@ public class RegistrationServlet extends HttpServlet {
             newLastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
         }
         AdminsDao ad = new AdminsDao();
-        Admins user = new Admins(newFirstName, newLastName, email, password);
+        Admin user = new Admin(newFirstName, newLastName, email, password);
 
         if (newFirstName.equals("") || newLastName.equals("") || email.equals("")) {
             request.setAttribute("error", "YES");
